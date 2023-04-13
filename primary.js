@@ -29,16 +29,8 @@ chrome.contextMenus.onClicked.addListener((info) => {
   {
     console.log('Example action for mainContextMenuId');
   } 
-  else if (info.menuItemId === secondContextMenuId) 
-  {
-    // Paste 'Right-click Clipboard paste options 2' into the editable context
-    const textToPaste = 'Right-click Clipboard paste options 2';
-    // Inject content script into active tab's DOM
-    chrome.tabs.executeScript({
-      code: `
-        document.execCommand('insertText', false, "${textToPaste}");
-      `
-    });
+  else if (info.menuItemId === secondContextMenuId) {
+    port.postMessage({action: 'pasteText'});
   }
 });
 
