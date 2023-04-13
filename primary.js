@@ -23,9 +23,11 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener((info) => {
   // Handle context menu click event here
   if (info.menuItemId === mainContextMenuId) {
-    console.log('Example action for mainContextMenuId');
+    const textToPaste = 'Right-click Clipboard paste options';
+    document.execCommand('insertText', false, textToPaste);
   } else if (info.menuItemId === secondContextMenuId) {
-    console.log('Example action for secondContextMenuId');
+    const textToPaste = 'Right-click Clipboard paste options 2';
+    document.execCommand('insertText', false, textToPaste);
   }
 });
 
