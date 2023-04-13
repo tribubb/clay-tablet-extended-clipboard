@@ -1,7 +1,12 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    id: 'hoge',
-    title: 'Get Background Image',
+    id: 'show-main-context',
+    title: 'Right-click Clipboard paste options',
+  });
+
+  chrome.contextMenus.create({
+    id: 'show-second-context',
+    title: 'Right-click Clipboard paste options 2',
   });
 });
 
