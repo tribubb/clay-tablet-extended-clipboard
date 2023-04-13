@@ -32,7 +32,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
   }
 });
 
-// Remove the "Delete" context menu item when context menu is shown
+/*// Remove the "Delete" context menu item when context menu is shown
 chrome.contextMenus.onShown.addListener((info) => {
   // Remove the "Delete" context menu item
   chrome.contextMenus.remove('delete-context', () => {
@@ -48,4 +48,4 @@ chrome.contextMenus.onShown.addListener((info) => {
       }
     });
   });
-});
+});*/
