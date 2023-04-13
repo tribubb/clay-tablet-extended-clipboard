@@ -5,7 +5,7 @@
   "background": {
     "service_worker": "primary-loader.js"
   },
-  "browser_action": {
+  "action": {
     "default_title": "Some tooltip"
   },
   "permissions": [
