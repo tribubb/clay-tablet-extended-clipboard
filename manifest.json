@@ -21,7 +21,6 @@
     "search",
     "tabs",
     "webRequest",
-    "webRequestBlocking",
     "webNavigation",
     "storage",
     "unlimitedStorage",
