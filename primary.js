@@ -1,10 +1,10 @@
-rightClickHandler = function(){
-  //Do your stuff over that selected context menu
-};
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'hoge',
+    title: 'Get Background Image',
+  });
+});
 
-chrome.contextMenus.create({
-  id: "show-menu-tridly",
-  title: "Tridly Short Link",
-  contexts:["link","selection"],  // ContextType
-  onclick: rightClickHandler // A callback function
+chrome.contextMenus.onClicked.addListener((info) => {
+  console.log("Example action")
 });
