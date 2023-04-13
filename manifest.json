@@ -1,15 +1,17 @@
 {
   "manifest_version": 3,
-  "version": "0.01",
+  "version": "0.011",
   "name": "Test",
   "background": {
     "service_worker": "primary-loader.js"
   },
   "action": {
-    "default_title": "Some tooltip"
+    "default_title": "Show tooltip",
+    "default_popup":  "index.html"
   },
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "scripting"
   ],
   "icons": {
     "16": "icon16.png"
