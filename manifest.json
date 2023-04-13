@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.016",
+  "version": "0.017",
   "name": "Right-click Clipboard",
   "background": {
     "service_worker": "primary-loader.js"

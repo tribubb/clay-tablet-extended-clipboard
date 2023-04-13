@@ -1,10 +1,13 @@
+let mainContextMenuId; // Declare mainContextMenuId in a higher scope
+let secondContextMenuId; // Declare secondContextMenuId in a higher scope 
+
 function generateContextMenuId() {
   return 'context-menu-' + Math.random().toString(36).substr(2, 10);
 }
 
 chrome.runtime.onInstalled.addListener(() => {
   // Create context menu item for all editable text input fields
-  const mainContextMenuId = generateContextMenuId();
+  mainContextMenuId = generateContextMenuId(); // Assign value to mainContextMenuId
   chrome.contextMenus.create({
     id: mainContextMenuId,
     title: 'Right-click Clipboard paste options',
@@ -12,7 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 
   // Create context menu item for all editable text input fields
-  const secondContextMenuId = generateContextMenuId();
+  secondContextMenuId = generateContextMenuId(); // Assign value to secondContextMenuId
   chrome.contextMenus.create({
     id: secondContextMenuId,
     title: 'Right-click Clipboard paste options 2',
@@ -30,12 +33,11 @@ chrome.contextMenus.onClicked.addListener((info) => {
   {
     // Paste 'Right-click Clipboard paste options 2' into the editable context
     const textToPaste = 'Right-click Clipboard paste options 2';
-    navigator.clipboard.writeText(textToPaste).then(() => {
-      console.log('Text successfully copied to clipboard:', textToPaste);
-      document.execCommand('paste');
-    }).catch((error) => 
-    {
-      console.error('Failed to copy text to clipboard:', error);
+    // Inject content script into active tab's DOM
+    chrome.tabs.executeScript({
+      code: `
+        document.execCommand('insertText', false, "${textToPaste}");
+      `
     });
   }
 });
