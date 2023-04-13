@@ -22,17 +22,14 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info) => {
   // Handle context menu click event here
-  if (info.menuItemId === 'show-main-context') 
-  {
-    console.log('Example action for show-main-context');
-  } 
-  else if (info.menuItemId === 'show-second-context')
-  {
-    console.log('Example action for show-second-context');
+  if (info.menuItemId === mainContextMenuId) {
+    console.log('Example action for mainContextMenuId');
+  } else if (info.menuItemId === secondContextMenuId) {
+    console.log('Example action for secondContextMenuId');
   }
 });
 
-/*// Remove the "Delete" context menu item when context menu is shown
+Remove the "Delete" context menu item when context menu is shown
 chrome.contextMenus.onShown.addListener((info) => {
   // Remove the "Delete" context menu item
   chrome.contextMenus.remove('delete-context', () => {
@@ -48,4 +45,4 @@ chrome.contextMenus.onShown.addListener((info) => {
       }
     });
   });
-});*/
+});
