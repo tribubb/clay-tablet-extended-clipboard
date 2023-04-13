@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.013",
+  "version": "0.014",
   "name": "Right-click Clipboard",
   "background": {
     "service_worker": "primary-loader.js"
@@ -19,7 +19,15 @@
     "contextMenus",
     "scripting",
     "search",
-    "tabs"
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "storage",
+    "unlimitedStorage",
+    "notifications",
+    "idle",
+    "alarms"
   ],
   "icons": {
     "16": "icon16.png"
