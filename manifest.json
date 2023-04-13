@@ -3,7 +3,8 @@
   "version": "0.01",
   "name": "Test",
   "background": {
-    "service_worker": [ "primary.js" ]
+    "service_worker": "primary-loader.js",
+    "type": "module"
   },
   "browser_action": {
     "default_title": "Some tooltip"
