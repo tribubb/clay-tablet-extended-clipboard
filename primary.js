@@ -24,7 +24,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
   }
 });
 
-/*chrome.contextMenus.onShown.addListener((info) => {
+chrome.contextMenus.onShown.addListener((info) => {
   // Create a new context menu item for "Delete" option
   chrome.contextMenus.create({
     id: 'delete-context',
@@ -36,4 +36,4 @@ chrome.contextMenus.onClicked.addListener((info) => {
       console.log('Delete clicked');
     }
   });
-});*/
+});
