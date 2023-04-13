@@ -6,8 +6,7 @@
     "scripts": [ "primary.js" ]
   },
   "browser_action": {
-    "default_title": "Some tooltip",
-    "default_popup": "popup.html"
+    "default_title": "Some tooltip"
   },
   "permissions": [
     "contextMenus"
