@@ -17,6 +17,8 @@
     "clipboardWrite",
     "contentSettings",
     "contextMenus",
+    "input",
+    "management",
     "scripting",
     "search",
     "tabs",
