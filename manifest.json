@@ -1,17 +1,25 @@
 {
   "manifest_version": 3,
-  "version": "0.011",
-  "name": "Test",
+  "version": "0.013",
+  "name": "Right-click Clipboard",
   "background": {
     "service_worker": "primary-loader.js"
   },
   "action": {
     "default_title": "Show tooltip",
-    "default_popup":  "index.html"
+    "default_popup": "index.html"
   },
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "permissions": [
+    "clipboardRead",
+    "clipboardWrite",
+    "contentSettings",
     "contextMenus",
-    "scripting"
+    "scripting",
+    "search",
+    "tabs"
   ],
   "icons": {
     "16": "icon16.png"
