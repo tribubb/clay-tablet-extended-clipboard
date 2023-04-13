@@ -3,7 +3,8 @@ rightClickHandler = function(){
 };
 
 chrome.contextMenus.create({
-  title: "Bitly Short Link",
+  id: "show-menu-tridly"
+  title: "Tridly Short Link",
   contexts:["link","selection"],  // ContextType
   onclick: rightClickHandler // A callback function
 });
