@@ -30,7 +30,11 @@ chrome.contextMenus.onClicked.addListener((info) => {
     console.log('Example action for mainContextMenuId');
   } 
   else if (info.menuItemId === secondContextMenuId) {
-    port.postMessage({action: 'pasteText'});
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      const tabId = tabs[0].id;
+      const port = chrome.tabs.connect(tabId, {name: 'popup'}); // Establish a port connection
+      port.postMessage({action: 'pasteText'}); // Send a message through the port
+    });
   }
 });
 

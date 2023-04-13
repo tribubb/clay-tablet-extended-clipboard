@@ -1,7 +1,7 @@
 // primary-loader.js
 
 // Establish a connection with the content script
-const port = chrome.runtime.connect({name: "contentScript"});
+const port = chrome.runtime.connect({name: "popup"});
 
 // Listen for messages from the content script
 port.onMessage.addListener((message) => {
