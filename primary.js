@@ -30,7 +30,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 });
 
 //Remove the "Delete" context menu item when context menu is shown
-chrome.contextMenus.onShown.addListener((info) => {
+chrome.contextMenus.onClicked.addListener((info) => {
   // Remove the "Delete" context menu item
   chrome.contextMenus.remove('delete-context', () => {
     // Create a new context menu item for "Delete" option
