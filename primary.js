@@ -22,16 +22,25 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info) => {
   // Handle context menu click event here
-  if (info.menuItemId === mainContextMenuId) {
-    const textToPaste = 'Right-click Clipboard paste options';
-    document.execCommand('insertText', false, textToPaste);
-  } else if (info.menuItemId === secondContextMenuId) {
+  if (info.menuItemId === mainContextMenuId) 
+  {
+    console.log('Example action for mainContextMenuId');
+  } 
+  else if (info.menuItemId === secondContextMenuId) 
+  {
+    // Paste 'Right-click Clipboard paste options 2' into the editable context
     const textToPaste = 'Right-click Clipboard paste options 2';
-    document.execCommand('insertText', false, textToPaste);
+    navigator.clipboard.writeText(textToPaste).then(() => {
+      console.log('Text successfully copied to clipboard:', textToPaste);
+      document.execCommand('paste');
+    }).catch((error) => 
+    {
+      console.error('Failed to copy text to clipboard:', error);
+    });
   }
 });
 
-//Remove the "Delete" context menu item when context menu is shown
+/*//Remove the "Delete" context menu item when context menu is shown
 chrome.contextMenus.onClicked.addListener((info) => {
   // Remove the "Delete" context menu item
   chrome.contextMenus.remove('delete-context', () => {
@@ -47,4 +56,4 @@ chrome.contextMenus.onClicked.addListener((info) => {
       }
     });
   });
-});
+});*/
