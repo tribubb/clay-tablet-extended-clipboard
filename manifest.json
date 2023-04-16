@@ -2,7 +2,7 @@
 
 {
   "manifest_version": 3,
-  "version": "0.11",
+  "version": "0.13",
   "name": "Right-click Clipboard",
   "action": {
     "default_title": "Show tooltip",
