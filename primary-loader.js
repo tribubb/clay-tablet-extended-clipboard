@@ -1,18 +1,9 @@
 // primary-loader.js
 
+chrome.runtime.connect({name: 'popup'});
+
 // Establish a connection with the content script
-const port = chrome.runtime.connect({name: "popup"});
-
-// Listen for messages from the content script
-port.onMessage.addListener((message) => {
-  // Handle messages from the content script here
+chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+  const tabId = tabs[0].id;
+  chrome.tabs.sendMessage(tabId, {action: 'establishPortConnection'});
 });
-
-try 
-{
-  importScripts('primary.js');
-} 
-catch (e) 
-{
-  console.error(e);
-}

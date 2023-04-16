@@ -1,10 +1,9 @@
+//manifest.json
+
 {
   "manifest_version": 3,
-  "version": "0.017",
+  "version": "0.11",
   "name": "Right-click Clipboard",
-  "background": {
-    "service_worker": "primary-loader.js"
-  },
   "action": {
     "default_title": "Show tooltip",
     "default_popup": "index.html",
@@ -14,34 +13,27 @@
       "128": "icon128.png"
     }
   },
-
   "permissions": [
+    "activeTab",
     "clipboardRead",
     "clipboardWrite",
-    "contentSettings",
     "contextMenus",
-    "input",
-    "management",
-    "scripting",
-    "search",
     "tabs",
-    "webRequest",
-    "webNavigation",
-    "storage",
-    "unlimitedStorage",
-    "notifications",
-    "idle",
-    "alarms"
+    "storage"
   ],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
+      "matches": [ "<all_urls>" ],
+      "js": [ "contentScript.js" ],
+      "css": []
     }
   ]
 }

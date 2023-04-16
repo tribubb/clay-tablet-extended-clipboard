@@ -1,10 +1,60 @@
+<!-- index.html -->
+
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="index.css">
-	<script src="contentScript.js"></script>
+	<title>Editable List Example</title>
+	<style>
+        .container {
+            min-width: 400px;
+            min-height: 100px;
+            max-height: 300px;
+            margin: 0 auto;
+        }
+
+		.list {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		.list-item {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+			.list-item input {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+			.list-item button {
+				background-color: #a00;
+				color: #fff;
+				border: none;
+				padding: 5px;
+				cursor: pointer;
+			}
+
+		.add-button {
+			background-color: #0a0;
+			color: #fff;
+			border: none;
+			padding: 5px;
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body>
-	<p>Right-click Keyboard version 0.017</p>
-</body> 
+	<div class="container">
+		<ul class="list">
+			<li class="list-item">
+			</li>
+		</ul>
+		<button class="add-button" id="addButton">Add Item</button>
+		<p class="list-score" id="listScore">test</p>
+	</div>
+	<script src="contentScript.js"></script>
+</body>
+</html>
