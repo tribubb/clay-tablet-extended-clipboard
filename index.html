@@ -4,77 +4,21 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Editable List Example</title>
-	<style>
-        .container {
-            min-width: 400px;
-            min-height: 100px;
-            max-height: 300px;
-            margin: 0 auto;
-        }
-
-        .removeclass {
-            background-color: #a00;
-            color: #fff;
-            border: none;
-            padding: 2px 5px;
-            margin: 0px 2px;
-            cursor: pointer;
-        }
-
-        .copyclass {
-            background-color: #33d;
-            color: #fff;
-            border: none;
-            padding: 2px 5px;
-            margin: 0px 2px;
-            cursor: pointer;
-        }
-
-        .pasteclass {
-            background-color: #982;
-            color: #fff;
-            border: none;
-            padding: 2px 5px;
-            margin: 0px 2px;
-            cursor: pointer;
-        }
-
-		.list {
-			list-style-type: none;
-			padding: 0;
-		}
-
-		.list-item {
-			display: flex;
-			align-items: center;
-			margin-bottom: 10px;
-		}
-
-			.list-item input {
-				flex: 1;
-				margin-right: 10px;
-			}
-
-
-		.add-button {
-			background-color: #0a0;
-			color: #fff;
-			border: none;
-			padding: 5px;
-			cursor: pointer;
-		}
-	</style>
+	<title>Clipboard Extender</title>
+	<link rel="stylesheet" href="index.css">
 </head>
 <body>
+	<div class="settings-button-container">
+		<img id="settingsButton" src="settings16.png" alt="Settings">
+	</div>
 	<div class="container">
 		<ul class="list">
 			<li class="list-item">
 			</li>
 		</ul>
 		<button class="add-button" id="addButton">Add Item</button>
-		<p class="list-score" id="listScore">test</p>
 	</div>
 	<script src="contentScript.js"></script>
+	<script src="global.js"></script>
 </body>
 </html>

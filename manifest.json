@@ -2,7 +2,7 @@
 
 {
   "manifest_version": 3,
-  "version": "0.13",
+  "version": "0.14",
   "name": "Right-click Clipboard",
   "action": {
     "default_title": "Show tooltip",
@@ -15,8 +15,8 @@
   },
   "permissions": [
     "activeTab",
-    "clipboardRead",
     "clipboardWrite",
+    "clipboardRead",
     "contextMenus",
     "tabs",
     "storage"
@@ -26,13 +26,10 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
       "matches": [ "<all_urls>" ],
-      "js": [ "contentScript.js" ],
+      "js": [ "contentScript.js", "settingsScript.js", "global.js" ],
       "css": []
     }
   ]

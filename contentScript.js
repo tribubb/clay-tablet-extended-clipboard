@@ -1,6 +1,20 @@
 // contentScript.js
 
+// Declare variables for third-party code
+var chrome = chrome || {};
+var isPasteEnabled = false;
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    // Get the settings button element
+    var settingsButton = document.querySelector("#settingsButton");
+
+    // Add a click event listener to the add button
+    settingsButton.addEventListener("click", function () {
+        // Use the chrome.tabs.create method to create a new tab with the URL of your index.html page
+        chrome.tabs.create({ url: "settings.html", active: true });
+    });
+
     // Get the add button element
     var addButton = document.querySelector(".add-button");
 
@@ -11,11 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const randomStrings = [];
 
-    // Retrieve the big string from localStorage
     const retrievedBigString = localStorage.getItem('myBigString');
-
-    // Split the big string into individual small strings
-
 
     var savedInputTextData = localStorage.getItem("inputTextData");
     if (savedInputTextData) {
@@ -24,13 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Retrieve the saved list data from localStorage
     var savedListData = localStorage.getItem("listData");
-
-
-    // If saved list data exists, set it as the textContent of the list-score element
-    if (retrievedBigString) {
-        const smallStrings = retrievedBigString.split(',');
-        document.getElementById("listScore").textContent = retrievedBigString;
-    }
 
     function createInputFields() {
         if (savedListData) {
@@ -77,11 +80,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
                     inputElement.addEventListener("input", function () {
-                        inputTextArray[index] = this.value;
                         localStorage.setItem("inputTextData", JSON.stringify(inputTextArray));
                         randomStrings[index] = index;
                         const bigString = randomStrings.join(randomStrings[index] + ',');
                         localStorage.setItem('myBigString', bigString);
+                        if (typeof this.value === "undefined") {
+                            inputTextArray[index] = "";
+                        } else {
+                            inputTextArray[index] = this.value;
+                        }
                     });
 
                     copyElement.addEventListener("click", function () {
@@ -103,27 +110,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
                     pasteElement.addEventListener("click", function () {
-                        // Get the parent container element
-                        var containerElement = this.parentNode;
+                        if (isPasteButtonEnabled) {
+                            // Get the parent container element
+                            var containerElement = this.parentNode;
 
-                        // Get the input element within the parent container
-                        var inputElement = containerElement.querySelector("input[type='text']");
+                            // Get the input element within the parent container
+                            var inputElement = containerElement.querySelector("input[type='text']");
 
-                        // Read the text from the clipboard
-                        navigator.clipboard.readText().then(function (text) {
-                            // Set the value of the input element with the retrieved text
-                            inputElement.value = text;
-                            inputTextArray[index] = text; // Update the inputTextArray with the pasted text
-                            localStorage.setItem("inputTextData", JSON.stringify(inputTextArray)); // Update localStorage with the updated inputTextArray
-                        }).catch(function (err) {
-                            console.error("Unable to read text from clipboard", err);
-                        });
+                            // Read the text from the clipboard
+                            navigator.clipboard.readText().then(function (text) {
+                                // Set the value of the input element with the retrieved text
+                                inputElement.value = text;
+                                inputTextArray[index] = text; // Update the inputTextArray with the pasted text
+                                localStorage.setItem("inputTextData", JSON.stringify(inputTextArray)); // Update localStorage with the updated inputTextArray
+                            }).catch(function (err) {
+                                console.error("Unable to read text from clipboard", err);
+                            });
+                        }
                     });
                 })(i - 1); // Pass in the value of i - 1 to the closure
 
                 containerElement.appendChild(inputElement);
                 containerElement.appendChild(copyElement);
-                containerElement.appendChild(pasteElement);
+
+                if (isPasteEnabled) {
+                    containerElement.appendChild(pasteElement);
+                    console.log("Paste 1 working");
+                }
+
                 containerElement.appendChild(removeElement);
 
                 listItemElement.appendChild(containerElement);
@@ -133,8 +147,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Call the function to create input fields based on saved list data
-    createInputFields();
+    chrome.storage.sync.get(['pasteCheckbox'], (result) => {
+        const pasteCheckbox = result.pasteCheckbox;
+
+        if (pasteCheckbox) {
+            isPasteEnabled = true; // Enable the paste button
+        }
+
+        // Call the function to create input fields based on saved list data
+        createInputFields();
+    });
 
     // Add click event listener to the add button
     addButton.addEventListener("click", function () {
@@ -203,24 +225,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Add click event listener to the paste button
         pasteElement.addEventListener("click", function () {
-            // Get the parent container element
-            var containerElement = this.parentNode;
+            if (isPasteButtonEnabled) {
+                // Get the parent container element
+                var containerElement = this.parentNode;
 
-            // Get the input element within the parent container
-            var inputElement = containerElement.querySelector("input[type='text']");
+                // Get the input element within the parent container
+                var inputElement = containerElement.querySelector("input[type='text']");
 
-            // Read the text from the clipboard
-            navigator.clipboard.readText().then(function (text) {
-                // Set the value of the input element with the retrieved text
-                inputElement.value = text;
-                inputTextArray[index] = text; // Update the inputTextArray with the pasted text
-                localStorage.setItem("inputTextData", JSON.stringify(inputTextArray)); // Update localStorage with the updated inputTextArray
-
-                // Update the listScore element with the retrieved text
-                document.getElementById("listScore").textContent = text;
-            }).catch(function (err) {
-                console.error("Unable to read text from clipboard", err);
-            });
+                // Read the text from the clipboard
+                navigator.clipboard.readText().then(function (text) {
+                    // Set the value of the input element with the retrieved text
+                    inputElement.value = text;
+                    inputTextArray[index] = text; // Update the inputTextArray with the pasted text
+                    localStorage.setItem("inputTextData", JSON.stringify(inputTextArray)); // Update localStorage with the updated inputTextArray
+                }).catch(function (err) {
+                    console.error("Unable to read text from clipboard", err);
+                });
+            }
         });
 
         // Add input event listener to the input element
@@ -244,7 +265,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append the input element and button element to the container element
         containerElement.appendChild(inputElement);
         containerElement.appendChild(copyElement);
-        containerElement.appendChild(pasteElement);
+
+        if (isPasteEnabled) {
+            containerElement.appendChild(pasteElement);
+            console.log("Paste 2 working");
+        }
+
         containerElement.appendChild(removeElement);
 
         // Append the container element to the list item element

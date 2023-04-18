@@ -1,5 +1,88 @@
-body {
-    min-width: 300px;
-    min-height: 100px;
+html, body {
+    max-width: 500px;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.container {
+    min-width: 400px;
     max-height: 300px;
+    margin: 0 auto;
+}
+
+.removeclass {
+    background-color: #a00;
+    color: #fff;
+    border: none;
+    padding: 2px 5px;
+    margin: 0px 2px;
+    cursor: pointer;
+}
+
+.copyclass {
+    background-color: #33d;
+    color: #fff;
+    border: none;
+    padding: 2px 5px;
+    margin: 0px 2px;
+    cursor: pointer;
+}
+
+.pasteclass {
+    background-color: #982;
+    color: #fff;
+    border: none;
+    padding: 2px 5px;
+    margin: 0px 2px;
+    cursor: pointer;
+}
+
+.pastetoggleclass {
+    background-color: #982;
+    color: #fff;
+    border: none;
+    padding: 2px 5px;
+    margin: 0px 2px;
+    cursor: pointer;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+    .list-item input {
+        flex: 1;
+        width: 220px;
+        margin-right: 2px;
+    }
+
+
+.add-button {
+    background-color: #0a0;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.settings-button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#settingsButton {
+    display: block;
+    width: 26px;
+    height: 26px;
+    outline: none;
+    object-fit: none;
 }
