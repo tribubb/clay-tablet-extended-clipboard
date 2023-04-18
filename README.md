@@ -1,1 +1,1 @@
-# right-click-clipboard
+# clay-tablet-extended-clipboard
