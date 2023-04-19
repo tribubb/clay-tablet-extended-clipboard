@@ -1,6 +1,6 @@
 DISCLAIMER DOCUMENT
 
-This web extension ("Clipboard Extender") is provided to you without any warranties or representations, express or implied, including without limitation any warranties of merchantability, fitness for a particular purpose, or non-infringement of third party rights.
+This web extension ("Clay Tablet Extended Clipboard") is provided to you without any warranties or representations, express or implied, including without limitation any warranties of merchantability, fitness for a particular purpose, or non-infringement of third party rights.
 
 You acknowledge that the Extension is provided "as is" and that your use of the Extension is at your sole risk. 
 We do not guarantee that the Extension will be error-free or uninterrupted, or that it will meet your requirements.
